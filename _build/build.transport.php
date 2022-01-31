@@ -1,5 +1,7 @@
 <?php
 
+use MODX\Revolution\Transport\modPackageBuilder;
+
 /**
  * @param string $filename The name of the file.
  * @return string The file's content
@@ -61,7 +63,6 @@ $sources= array (
 );
 unset($root);
 
-$modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
 $builder->directory = $targetDirectory;
 $builder->createPackage(PKG_NAMESPACE,PKG_VERSION,PKG_RELEASE);
