@@ -1,0 +1,5 @@
+DailyPhoto 1.0.0-pl
+-------------------
+Released on 2022-01-31
+
+- First official release for MODX 3.0.0-rc1 and up

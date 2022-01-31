@@ -21,9 +21,9 @@ set_time_limit(0);
 
 if (!defined('MOREPROVIDER_BUILD')) {
     /* define version */
-    define('PKG_NAME','LoginUnsplash');
-    define('PKG_NAMESPACE','login_unsplash');
-    define('PKG_VERSION','0.1.0');
+    define('PKG_NAME','DailyPhoto');
+    define('PKG_NAMESPACE','daily_photo');
+    define('PKG_VERSION','1.0.0');
     define('PKG_RELEASE','pl');
 
     /* load modx */

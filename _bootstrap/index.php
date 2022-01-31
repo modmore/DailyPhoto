@@ -16,41 +16,36 @@ $modx->getService('error','error.modError', '', '');
 
 $componentPath = dirname(dirname(__FILE__));
 
-//$LoginUnsplash = $modx->getService('login_unsplash','LoginUnsplash', $componentPath.'/core/components/login_unsplash/model/login_unsplash/', array(
-//    'login_unsplash.core_path' => $componentPath.'/core/components/login_unsplash/',
-//));
-
-
 /* Namespace */
 if (!createObject('modNamespace',array(
-    'name' => 'login_unsplash',
-    'path' => $componentPath.'/core/components/login_unsplash/',
-    'assets_path' => $componentPath.'/assets/components/login_unsplash/',
+    'name' => 'daily_photo',
+    'path' => $componentPath.'/core/components/daily_photo/',
+    'assets_path' => $componentPath.'/assets/components/daily_photo/',
 ),'name', false)) {
-    echo "Error creating namespace login_unsplash.\n";
+    echo "Error creating namespace daily_photo.\n";
 }
 
 /* Path settings */
 if (!createObject('modSystemSetting', array(
-    'key' => 'login_unsplash.core_path',
-    'value' => $componentPath.'/core/components/login_unsplash/',
+    'key' => 'daily_photo.core_path',
+    'value' => $componentPath.'/core/components/daily_photo/',
     'xtype' => 'textfield',
-    'namespace' => 'login_unsplash',
+    'namespace' => 'daily_photo',
     'area' => 'Paths',
     'editedon' => time(),
 ), 'key', false)) {
-    echo "Error creating login_unsplash.core_path setting.\n";
+    echo "Error creating daily_photo.core_path setting.\n";
 }
 
 if (!createObject('modSystemSetting', array(
-    'key' => 'login_unsplash.assets_path',
-    'value' => $componentPath.'/assets/components/login_unsplash/',
+    'key' => 'daily_photo.assets_path',
+    'value' => $componentPath.'/assets/components/daily_photo/',
     'xtype' => 'textfield',
-    'namespace' => 'login_unsplash',
+    'namespace' => 'daily_photo',
     'area' => 'Paths',
     'editedon' => time(),
 ), 'key', false)) {
-    echo "Error creating login_unsplash.assets_path setting.\n";
+    echo "Error creating daily_photo.assets_path setting.\n";
 }
 
 /* Fetch assets url */
@@ -65,27 +60,27 @@ if ($_SERVER['SERVER_PORT'] != '80') {
 $requestUri = $_SERVER['REQUEST_URI'];
 $bootstrapPos = strpos($requestUri, '_bootstrap/');
 $requestUri = rtrim(substr($requestUri, 0, $bootstrapPos), '/').'/';
-$assetsUrl = "{$url}{$requestUri}assets/components/login_unsplash/";
+$assetsUrl = "{$url}{$requestUri}assets/components/daily_photo/";
 
 if (!createObject('modSystemSetting', array(
-    'key' => 'login_unsplash.assets_url',
+    'key' => 'daily_photo.assets_url',
     'value' => $assetsUrl,
     'xtype' => 'textfield',
-    'namespace' => 'login_unsplash',
+    'namespace' => 'daily_photo',
     'area' => 'Paths',
     'editedon' => time(),
 ), 'key', false)) {
-    echo "Error creating login_unsplash.assets_url setting.\n";
+    echo "Error creating daily_photo.assets_url setting.\n";
 }
 
 if (!createObject('modPlugin', array(
-    'name' => 'Login Unsplash',
+    'name' => 'DailyPhoto',
     'static' => true,
-    'static_file' => $componentPath.'/core/components/login_unsplash/login_unsplash.plugin.php',
+    'static_file' => $componentPath.'/core/components/daily_photo/elements/plugins/daily_photo.plugin.php',
 ), 'name', true)) {
-    echo "Error creating Login Unsplash Plugin.\n";
+    echo "Error creating DailyPhoto Plugin.\n";
 }
-$vcPlugin = $modx->getObject('modPlugin', array('name' => 'Login Unsplash'));
+$vcPlugin = $modx->getObject('modPlugin', array('name' => 'DailyPhoto'));
 if ($vcPlugin) {
     if (!createObject('modPluginEvent', array(
         'pluginid' => $vcPlugin->get('id'),
@@ -101,19 +96,26 @@ if ($vcPlugin) {
     ), array('pluginid','event'), false)) {
         echo "Error creating modPluginEvent.\n";
     }
+    if (!createObject('modPluginEvent', array(
+        'pluginid' => $vcPlugin->get('id'),
+        'event' => 'OnSiteRefresh',
+        'priority' => 0,
+    ), array('pluginid','event'), false)) {
+        echo "Error creating modPluginEvent.\n";
+    }
 }
 
 $settings = include dirname(dirname(__FILE__)).'/_build/data/settings.php';
 foreach ($settings as $key => $opts) {
     if (!createObject('modSystemSetting', array(
-        'key' => 'login_unsplash.' . $key,
+        'key' => 'daily_photo.' . $key,
         'value' => $opts['value'],
         'xtype' => (isset($opts['xtype'])) ? $opts['xtype'] : 'textfield',
-        'namespace' => 'login_unsplash',
+        'namespace' => 'daily_photo',
         'area' => $opts['area'],
         'editedon' => time(),
     ), 'key', false)) {
-        echo "Error creating login_unsplash.".$key." setting.\n";
+        echo "Error creating daily_photo.".$key." setting.\n";
     }
 }
 

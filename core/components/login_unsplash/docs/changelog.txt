@@ -1,4 +1,0 @@
-++ Login Unsplash 0.1.0
-++ Released on 2014-07-18
-++++++++++++++++++++++++++
-- First version

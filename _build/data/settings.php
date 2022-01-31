@@ -1,7 +1,11 @@
 <?php
-return array(
-    'application_id' => array(
-        'area' => 'authenticate',
+return [
+    'access_key' => [
+        'area' => 'authentication',
         'value' => '',
-    ),
-);
+    ],
+    'query' => [
+        'area' => 'general',
+        'value' => 'creative',
+    ]
+];

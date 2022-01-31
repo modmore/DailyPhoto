@@ -18,10 +18,10 @@ foreach ($settingSource as $key => $options) {
     /** @var modSystemSetting */
     $settings[$key] = $modx->newObject('modSystemSetting');
     $settings[$key]->fromArray(array(
-        'key' => 'login_unsplash.' . $key,
+        'key' => 'daily_photo.' . $key,
         'xtype' => $xtype,
         'value' => $options['value'],
-        'namespace' => 'login_unsplash',
+        'namespace' => 'daily_photo',
         'area' => $options['area'],
         'editedon' => time(),
     ), '', true, true);
